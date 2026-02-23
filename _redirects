@@ -1,0 +1,8 @@
+# Redirects pour les URLs sans extension .html
+/contact    /contact.html   200
+/about      /about.html     200
+/entreprises /entreprises.html 200
+/bts        /bts.html       200
+/e5         /e5.html        200
+/veille     /veille.html    200
+/success    /success.html   200
