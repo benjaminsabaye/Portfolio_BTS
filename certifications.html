@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certifications — Benjamin Sabaye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.certif-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.certif-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  text-decoration: none;
+  display: flex; flex-direction: column;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.certif-card:hover {
+  border-color: rgba(0,229,255,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+}
+.certif-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.certif-card:hover::before { transform: scaleX(1); }
+
+/* Placeholder card (pour ajouter une certification) */
+.certif-card.add-card {
+  border-style: dashed;
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+  align-items: center; justify-content: center;
+  min-height: 200px; text-align: center;
+}
+.certif-card.add-card:hover { transform: none; box-shadow: none; }
+
+.certif-logo {
+  width: 52px; height: 52px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
+}
+.logo-cisco { background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2); }
+.logo-cnil  { background: rgba(124,58,237,0.08); border: 1px solid rgba(124,58,237,0.25); }
+.logo-other { background: rgba(255,255,255,0.04); border: 1px solid var(--border); }
+
+.certif-org {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+.org-cisco { color: var(--accent); }
+.org-cnil  { color: #a78bfa; }
+.org-other { color: var(--muted); }
+
+.certif-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.certif-desc {
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.65;
+  flex: 1;
+  margin-bottom: 1.25rem;
+}
+
+.certif-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+.certif-date {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.certif-open {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  display: flex; align-items: center; gap: 0.4rem;
+  transition: gap 0.2s;
+}
+.certif-card:hover .certif-open { gap: 0.7rem; }
+
+/* INSTRUCTIONS BOX */
+.instructions {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 3rem;
+  display: flex; gap: 1.25rem; align-items: flex-start;
+}
+.instructions-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 0.1rem; }
+.instructions h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.4rem; }
+.instructions p { font-size: 0.83rem; color: var(--muted); line-height: 1.65; }
+.instructions code {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
+.add-icon { font-size: 2rem; color: var(--muted); margin-bottom: 0.5rem; display: block; }
+.add-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; }
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursor"></div>
+<nav>
+  <a href="index.html" class="nav-logo">BS // BTS SIO SISR</a>
+  <ul class="nav-links">
+    <li><a href="about.html">Profil</a></li>
+    <li><a href="entreprises.html">Stages</a></li>
+    <li><a href="bts.html">BTS SIO</a></li>
+    <li><a href="e5.html">Épreuve E5</a></li>
+    <li><a href="veille.html">Veille</a></li>
+    <li><a href="certifications.html">Certifs</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-tag anim-1">Compétences validées</div>
+  <h1 class="anim-2">Certifications</h1>
+  <p class="anim-3">Certifications obtenues au cours de ma formation, validant mes compétences en réseaux, cybersécurité et protection des données.</p>
+</div>
+
+<hr class="divider">
+
+<section class="content-section" style="padding-top:3.5rem;">
+
+  <!-- INSTRUCTIONS POUR AJOUTER UNE CERTIF -->
+  <div class="instructions reveal">
+    <span class="instructions-icon">💡</span>
+    <div>
+      <h4>Comment ajouter une certification</h4>
+      <p>
+        1. Dépose ton fichier PDF dans le dossier de ton repo GitHub (ex: <code>certifs/nom-certif.pdf</code>)<br>
+        2. Dans ce fichier <code>certifications.html</code>, duplique une carte existante et modifie le nom, la description et le lien PDF<br>
+        3. Pousse les modifications sur GitHub — Netlify redéploie automatiquement
+      </p>
+    </div>
+  </div>
+
+  <!-- GRILLE DES CERTIFICATIONS -->
+  <div class="certif-grid">
+
+    <!-- ===== CISCO - Packet Tracer ===== -->
+    <a href="certifs/cisco-packet-tracer.pdf" class="certif-card reveal" target="_blank">
+      <div class="certif-logo logo-cisco">🌐</div>
+      <span class="certif-org org-cisco">Cisco</span>
+      <div class="certif-name">Introduction to Packet Tracer</div>
+      <p class="certif-desc">Maîtrise du logiciel de simulation réseau Cisco Packet Tracer. Conception, configuration et dépannage d'architectures réseau simulées.</p>
+      <div class="certif-footer">
+        <span class="certif-date">2025</span>
+        <span class="certif-open">Voir le certificat →</span>
+      </div>
+    </a>
+
+    <!-- ===== CNIL - RGPD ===== -->
+    <a href="certifs/cnil-rgpd.pdf" class="certif-card reveal" target="_blank">
+      <div class="certif-logo logo-cnil">🛡️</div>
+      <span class="certif-org org-cnil">CNIL</span>
+      <div class="certif-name">Attestation RGPD</div>
+      <p class="certif-desc">Connaissance des principes fondamentaux du Règlement Général sur la Protection des Données : droits des personnes, obligations des entreprises, sécurité des données personnelles.</p>
+      <div class="certif-footer">
+        <span class="certif-date">2025</span>
+        <span class="certif-open">Voir le certificat →</span>
+      </div>
+    </a>
+
+    <!-- ===== CARTE VIDE (placeholder) ===== -->
+    <div class="certif-card add-card reveal">
+      <span class="add-icon">＋</span>
+      <span class="add-label">Prochaine certification</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2025–2026 <span>Benjamin Sabaye</span> — BTS SIO SISR · Ingetis Paris</p>
+  <p><a href="index.html" style="color:var(--muted);text-decoration:none;font-family:var(--font-mono);font-size:0.7rem;">← Retour à l'accueil</a></p>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>
