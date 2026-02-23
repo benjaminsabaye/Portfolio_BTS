@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benjamin Sabaye — Portfolio BTS SIO SISR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* HERO specific */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 3rem 4rem;
+  position: relative; overflow: hidden;
+}
+.hero-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at 30% 50%, black 30%, transparent 80%);
+}
+.hero-glow {
+  position: absolute; width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
+  top: 50%; left: -12%; transform: translateY(-50%);
+  pointer-events: none;
+}
+.hero-tag { font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1.5rem; }
+.hero-name { font-size: clamp(3.5rem, 8vw, 7rem); font-weight: 800; line-height: 1.0; letter-spacing: -0.03em; margin-bottom: 1rem; }
+.hero-name span { color: transparent; -webkit-text-stroke: 1px rgba(0,229,255,0.4); }
+.hero-desc { max-width: 520px; font-size: 1.05rem; color: var(--muted); line-height: 1.75; margin-bottom: 2.5rem; }
+.hero-desc strong { color: var(--text); }
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-scroll { position: absolute; bottom: 2.5rem; left: 3rem; font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); letter-spacing: 0.12em; display: flex; align-items: center; gap: 0.75rem; }
+.hero-scroll::before { content: ''; display: block; width: 40px; height: 1px; background: var(--muted); }
+
+/* NAV CARDS (home sections overview) */
+.nav-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+.nav-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.75rem;
+  text-decoration: none;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+.nav-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
+.nav-card:hover { border-color: rgba(0,229,255,0.25); transform: translateY(-3px); }
+.nav-card:hover::before { transform: scaleX(1); }
+.nav-card-left {}
+.nav-card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; display: block; }
+.nav-card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+.nav-card-sub { font-family: var(--font-mono); font-size: 0.7rem; color: var(--muted); }
+.nav-card-arrow { font-size: 1.3rem; color: var(--muted); transition: color 0.2s, transform 0.2s; }
+.nav-card:hover .nav-card-arrow { color: var(--accent); transform: translateX(4px); }
+
+/* Stats strip */
+.stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.stat-item { background: var(--surface); padding: 1.75rem 1.5rem; text-align: center; }
+.stat-num { font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.4rem; display: block; }
+.stat-label { font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; }
+
+@media (max-width: 768px) {
+  .hero { padding: 7rem 1.5rem 4rem; }
+  .hero-scroll { left: 1.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursor"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">BS // BTS SIO SISR</a>
+  <ul class="nav-links">
+    <li><a href="about.html">Profil</a></li>
+    <li><a href="entreprises.html">Stages</a></li>
+    <li><a href="bts.html">BTS SIO</a></li>
+    <li><a href="e5.html">Épreuve E5</a></li>
+    <li><a href="veille.html">Veille</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <p class="hero-tag anim-1">Portfolio · BTS SIO · Option SISR · 2025–2026</p>
+  <h1 class="hero-name anim-2">Benjamin<br><span>Sabaye</span></h1>
+  <p class="hero-desc anim-3">Étudiant en BTS SIO option <strong>SISR</strong>, passionné par les <strong>réseaux</strong>, les <strong>systèmes</strong> et la <strong>cybersécurité</strong>. Ce portfolio présente mon parcours, mes compétences et les travaux réalisés durant ma formation chez <strong>Ingetis</strong>.</p>
+  <div class="hero-ctas anim-4">
+    <a href="about.html" class="btn btn-primary">Découvrir mon profil →</a>
+    <a href="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/curriculum-vitae.pdf" class="btn btn-ghost" target="_blank">↓ Télécharger mon CV</a>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<hr class="divider">
+
+<!-- STATS -->
+<section class="content-section" style="padding-top:4rem; padding-bottom:3rem;">
+  <div class="stats-strip reveal">
+    <div class="stat-item">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Stages réalisés</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Projets réseau</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">SISR</span>
+      <span class="stat-label">Option choisie</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">Bac+2</span>
+      <span class="stat-label">Niveau visé</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- NAVIGATION CARDS -->
+<section class="content-section" style="padding-top:4rem;">
+  <div class="section-label">Explorer le portfolio</div>
+  <h2 class="section-title">Toutes les sections</h2>
+  <div class="nav-cards">
+    <a href="about.html" class="nav-card reveal">
+      <div class="nav-card-left">
+        <span class="nav-card-icon">👤</span>
+        <div class="nav-card-title">À propos de moi</div>
+        <div class="nav-card-sub">Profil, compétences, CV</div>
+      </div>
+      <span class="nav-card-arrow">→</span>
+    </a>
+    <a href="entreprises.html" class="nav-card reveal">
+      <div class="nav-card-left">
+        <span class="nav-card-icon">🏢</span>
+        <div class="nav-card-title">Entreprises & Stages</div>
+        <div class="nav-card-sub">Infopro Digital · LexisNexis</div>
+      </div>
+      <span class="nav-card-arrow">→</span>
+    </a>
+    <a href="bts.html" class="nav-card reveal">
+      <div class="nav-card-left">
+        <span class="nav-card-icon">🎓</span>
+        <div class="nav-card-title">BTS SIO & Mon École</div>
+        <div class="nav-card-sub">Formation, projets, Ingetis</div>
+      </div>
+      <span class="nav-card-arrow">→</span>
+    </a>
+    <a href="e5.html" class="nav-card reveal">
+      <div class="nav-card-left">
+        <span class="nav-card-icon">📋</span>
+        <div class="nav-card-title">Épreuve E5</div>
+        <div class="nav-card-sub">Tableau de synthèse, documents</div>
+      </div>
+      <span class="nav-card-arrow">→</span>
+    </a>
+    <a href="veille.html" class="nav-card reveal">
+      <div class="nav-card-left">
+        <span class="nav-card-icon">🔍</span>
+        <div class="nav-card-title">Veille Technologique</div>
+        <div class="nav-card-sub">IA & Cybersécurité · Outils</div>
+      </div>
+      <span class="nav-card-arrow">→</span>
+    </a>
+    <a href="contact.html" class="nav-card reveal">
+      <div class="nav-card-left">
+        <span class="nav-card-icon">✉</span>
+        <div class="nav-card-title">Contact</div>
+        <div class="nav-card-sub">LinkedIn · Email · Formulaire</div>
+      </div>
+      <span class="nav-card-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025–2026 <span>Benjamin Sabaye</span> — BTS SIO SISR · Ingetis Paris</p>
+  <p>Portfolio <span>v2.0</span></p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

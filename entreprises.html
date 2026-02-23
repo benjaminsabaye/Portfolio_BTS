@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entreprises & Stages — Benjamin Sabaye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.company-block { margin-bottom: 4rem; }
+.company-header {
+  display: flex; align-items: center; gap: 2rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 2rem 2.5rem;
+  margin-bottom: 2rem; position: relative; overflow: hidden;
+}
+.company-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.company-logo-wrap { flex-shrink: 0; }
+.company-logo-wrap img { height: 50px; width: auto; object-fit: contain; display: block; filter: brightness(0) invert(1) opacity(0.85); }
+.company-logo-placeholder { height: 50px; display: flex; align-items: center; font-size: 1.3rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+.company-meta h2 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.3rem; }
+.company-meta p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+.company-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2); padding: 0.2rem 0.6rem; border-radius: 2px; display: inline-block; margin-bottom: 0.5rem; }
+
+.stage-description { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem 2.5rem; margin-bottom: 1.5rem; }
+.stage-description p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; }
+.stage-description p strong { color: var(--text); }
+
+.missions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.mission-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.25rem 1.5rem;
+  display: flex; align-items: flex-start; gap: 0.85rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.mission-item:hover { border-color: rgba(0,229,255,0.25); transform: translateX(3px); }
+.mission-bullet { color: var(--accent); font-size: 1rem; margin-top: 0.1rem; flex-shrink: 0; }
+.mission-text { font-size: 0.9rem; line-height: 1.6; color: var(--muted); }
+.mission-text strong { color: var(--text); }
+
+.company-info-bar {
+  display: flex; gap: 1.5rem; flex-wrap: wrap;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 6px; margin-top: 1.5rem;
+}
+.company-info-item { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+.company-info-item a { color: var(--accent); text-decoration: none; }
+.company-info-item a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursor"></div>
+<nav>
+  <a href="index.html" class="nav-logo">BS // BTS SIO SISR</a>
+  <ul class="nav-links">
+    <li><a href="about.html">Profil</a></li>
+    <li><a href="entreprises.html">Stages</a></li>
+    <li><a href="bts.html">BTS SIO</a></li>
+    <li><a href="e5.html">Épreuve E5</a></li>
+    <li><a href="veille.html">Veille</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-tag anim-1">Expériences</div>
+  <h1 class="anim-2">Entreprises<br>& Stages</h1>
+  <p class="anim-3">Deux stages en entreprise réalisés dans le cadre du BTS SIO SISR, couvrant l'infrastructure, l'automatisation et le support utilisateur.</p>
+</div>
+
+<hr class="divider">
+
+<!-- STAGE 1 : INFOPRO DIGITAL -->
+<section class="content-section" style="padding-top:3.5rem;">
+  <div class="company-block">
+    <div class="company-header reveal">
+      <div class="company-logo-wrap">
+        <img src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/capture_d_ecran_2025-12-14_212059-removebg-preview.png"
+             alt="Infopro Digital"
+             onerror="this.outerHTML='<div class=\'company-logo-placeholder\'>Infopro Digital</div>'">
+      </div>
+      <div class="company-meta">
+        <span class="company-tag">Stage 1 · Infrastructure & Automatisation</span>
+        <h2>Infopro Digital</h2>
+        <p>Leader français de l'information professionnelle B2B · 615 M€ de CA · 4 000 collaborateurs · 20 pays</p>
+      </div>
+    </div>
+
+    <div class="stage-description reveal">
+      <p>Infopro Digital est le leader français de l'information professionnelle B2B. Le groupe possède plus de <strong>100 marques spécialisées</strong> dans cinq secteurs clés : construction (Le Moniteur), industrie (L'Usine Nouvelle), distribution (LSA), assurance et automobile. Ses activités combinent presse professionnelle, solutions logicielles, bases de données et organisation de salons.</p>
+    </div>
+
+    <div class="section-label" style="margin-bottom:1rem;" class="reveal">Missions réalisées</div>
+    <div class="missions-grid">
+      <div class="mission-item reveal">
+        <span class="mission-bullet">▹</span>
+        <span class="mission-text"><strong>Proxmox</strong> — Installation et prise en main de machines virtuelles sur la plateforme de virtualisation Proxmox</span>
+      </div>
+      <div class="mission-item reveal">
+        <span class="mission-bullet">▹</span>
+        <span class="mission-text"><strong>AWS</strong> — Découverte et manipulation des services cloud via Amazon Web Services</span>
+      </div>
+      <div class="mission-item reveal">
+        <span class="mission-bullet">▹</span>
+        <span class="mission-text"><strong>Ansible</strong> — Automatisation des tâches d'administration système</span>
+      </div>
+      <div class="mission-item reveal">
+        <span class="mission-bullet">▹</span>
+        <span class="mission-text"><strong>Déploiement OS</strong> — Création de clés USB bootables pour le déploiement de systèmes d'exploitation</span>
+      </div>
+    </div>
+
+    <div class="company-info-bar reveal">
+      <span class="company-info-item">📍 20 rue des Aqueducs, 94255 Gentilly Cedex</span>
+      <span class="company-info-item">📞 +33 (0)1 77 92 92 92</span>
+      <span class="company-info-item"><a href="https://www.linkedin.com/company/infopro-digital/" target="_blank">LinkedIn →</a></span>
+    </div>
+  </div>
+
+  <hr class="divider" style="margin: 0 0 4rem;">
+
+  <!-- STAGE 2 : LEXISNEXIS -->
+  <div class="company-block">
+    <div class="company-header reveal">
+      <div class="company-logo-wrap">
+        <img src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/lexisnexis-new-2021-1.png"
+             alt="LexisNexis"
+             onerror="this.outerHTML='<div class=\'company-logo-placeholder\'>LexisNexis</div>'">
+      </div>
+      <div class="company-meta">
+        <span class="company-tag" style="background:rgba(124,58,237,0.08);border-color:rgba(124,58,237,0.3);color:#a78bfa;">Stage 2 · Support & Maintenance</span>
+        <h2>LexisNexis</h2>
+        <p>Entreprise mondiale d'information juridique et d'analyse des risques · filiale RELX · 180 pays</p>
+      </div>
+    </div>
+
+    <div class="stage-description reveal">
+      <p>LexisNexis est une entreprise mondiale spécialisée dans l'information juridique et l'analyse des risques, filiale du groupe britannique RELX. Ses plateformes comme <strong>Lexis+</strong> exploitent 161 milliards de documents juridiques, tandis que ses solutions de prévention de la fraude analysent 345 millions de transactions quotidiennes.</p>
+    </div>
+
+    <div class="section-label" style="margin-bottom:1rem;">Missions réalisées</div>
+    <div class="missions-grid">
+      <div class="mission-item reveal">
+        <span class="mission-bullet" style="color:#a78bfa;">▹</span>
+        <span class="mission-text"><strong>Windows 11</strong> — Installation d'images personnalisées selon les spécificités de l'entreprise</span>
+      </div>
+      <div class="mission-item reveal">
+        <span class="mission-bullet" style="color:#a78bfa;">▹</span>
+        <span class="mission-text"><strong>Support N1/N2</strong> — Assistance technique directe aux utilisateurs pour la résolution d'incidents</span>
+      </div>
+      <div class="mission-item reveal">
+        <span class="mission-bullet" style="color:#a78bfa;">▹</span>
+        <span class="mission-text"><strong>Matériel</strong> — Montage, démontage, réparation et récupération de données sur supports de stockage</span>
+      </div>
+      <div class="mission-item reveal">
+        <span class="mission-bullet" style="color:#a78bfa;">▹</span>
+        <span class="mission-text"><strong>ServiceNow</strong> — Gestion des tickets d'incidents via l'outil ITSM ServiceNow</span>
+      </div>
+      <div class="mission-item reveal">
+        <span class="mission-bullet" style="color:#a78bfa;">▹</span>
+        <span class="mission-text"><strong>Microsoft Intune</strong> — Gestion de l'inventaire et des droits d'utilisateurs via Intune</span>
+      </div>
+      <div class="mission-item reveal">
+        <span class="mission-bullet" style="color:#a78bfa;">▹</span>
+        <span class="mission-text"><strong>Dual-boot</strong> — Installation de systèmes Linux/Windows en dual-boot sur des postes utilisateurs</span>
+      </div>
+    </div>
+
+    <div class="company-info-bar reveal">
+      <span class="company-info-item">📍 141 rue de Javel, Paris 75015</span>
+      <span class="company-info-item">📞 +33 (0)1 71 72 47 70</span>
+      <span class="company-info-item"><a href="https://www.linkedin.com/company/lexisnexis-nexissolutions/" target="_blank">LinkedIn →</a></span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025–2026 <span>Benjamin Sabaye</span> — BTS SIO SISR · Ingetis Paris</p>
+  <p><a href="index.html" style="color:var(--muted);text-decoration:none;font-family:var(--font-mono);font-size:0.7rem;">← Retour à l'accueil</a></p>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veille Technologique — Benjamin Sabaye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* TOOLS SECTION */
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+.tool-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 1.75rem;
+  transition: all 0.3s; position: relative; overflow: hidden;
+}
+.tool-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
+.tool-icon { font-size: 1.6rem; margin-bottom: 1rem; display: block; }
+.tool-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+.tool-type { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem; }
+.tool-desc { color: var(--muted); font-size: 0.85rem; line-height: 1.65; }
+.tool-url { margin-top: 1rem; display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.tool-url:hover { color: var(--accent); }
+
+/* FLOW DIAGRAM */
+.flow { display: flex; align-items: center; gap: 0; flex-wrap: wrap; margin: 2.5rem 0; }
+.flow-step {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 6px; padding: 1.25rem 1.5rem;
+  text-align: center; flex: 1; min-width: 120px;
+  transition: border-color 0.2s;
+}
+.flow-step:hover { border-color: rgba(0,229,255,0.3); }
+.flow-step .icon { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
+.flow-step .label { font-size: 0.8rem; font-weight: 700; }
+.flow-step .sub { font-family: var(--font-mono); font-size: 0.62rem; color: var(--muted); margin-top: 0.2rem; }
+.flow-arrow { font-size: 1.2rem; color: var(--accent); padding: 0 0.5rem; flex-shrink: 0; }
+
+/* TOPIC SECTION */
+.topic-header {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: 2rem 2.5rem; margin-bottom: 2rem;
+  position: relative; overflow: hidden;
+}
+.topic-header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.topic-tag { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; background: rgba(0,229,255,0.06); border: 1px solid rgba(0,229,255,0.2); padding: 0.2rem 0.65rem; border-radius: 2px; display: inline-block; margin-bottom: 0.75rem; }
+.topic-header h3 { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.5rem; }
+.topic-header p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
+
+/* STAT CARDS */
+.stat-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.stat-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 1.25rem; text-align: center; }
+.stat-card .num { font-size: 1.8rem; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 0.3rem; display: block; }
+.stat-card .lbl { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* CONTENT BLOCKS */
+.content-block { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 1.75rem; margin-bottom: 1.25rem; }
+.content-block h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.6rem; }
+.content-block p { color: var(--muted); font-size: 0.88rem; line-height: 1.75; }
+.content-block p strong { color: var(--text); }
+
+/* CASE STUDY */
+.case-study { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 1.25rem; }
+.case-study-header { padding: 1.25rem 1.75rem; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+.case-study-header h4 { font-size: 0.9rem; font-weight: 700; }
+.case-status { font-family: var(--font-mono); font-size: 0.65rem; padding: 0.2rem 0.65rem; border-radius: 2px; }
+.status-ok { background: rgba(0,255,128,0.08); color: #4ade80; border: 1px solid rgba(0,255,128,0.2); }
+.status-warn { background: rgba(251,191,36,0.08); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+.case-study-body { padding: 1.5rem 1.75rem; background: var(--surface); }
+.case-step { display: flex; gap: 0.75rem; margin-bottom: 0.6rem; align-items: flex-start; }
+.case-step-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); width: 1.5rem; flex-shrink: 0; margin-top: 0.2rem; }
+.case-step-text { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+.case-step-text strong { color: var(--text); }
+
+/* SOURCES */
+.sources-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.source-item { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.82rem; color: var(--muted); padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; }
+.source-item a { color: var(--accent); text-decoration: none; font-family: var(--font-mono); font-size: 0.75rem; }
+.source-item a:hover { text-decoration: underline; }
+.source-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); min-width: 2rem; }
+
+@media (max-width: 768px) {
+  .flow { flex-direction: column; }
+  .flow-arrow { transform: rotate(90deg); }
+}
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursor"></div>
+<nav>
+  <a href="index.html" class="nav-logo">BS // BTS SIO SISR</a>
+  <ul class="nav-links">
+    <li><a href="about.html">Profil</a></li>
+    <li><a href="entreprises.html">Stages</a></li>
+    <li><a href="bts.html">BTS SIO</a></li>
+    <li><a href="e5.html">Épreuve E5</a></li>
+    <li><a href="veille.html">Veille</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-tag anim-1">Surveillance technologique</div>
+  <h1 class="anim-2">Veille<br>Technologique</h1>
+  <p class="anim-3">Sujet : <strong>L'impact de l'IA sur les systèmes de sécurité</strong>. Méthodologie de veille automatisée et analyse des grandes tendances cybersécurité.</p>
+</div>
+
+<hr class="divider">
+
+<!-- ======================== OUTILS DE VEILLE ======================== -->
+<section class="content-section" style="padding-top:3.5rem;">
+  <div class="section-label">Automatisation</div>
+  <h2 class="section-title">Outils & Méthode de veille</h2>
+  <p style="color:var(--muted);font-size:1rem;line-height:1.8;max-width:680px;margin-bottom:2.5rem;" class="reveal">
+    Pour assurer une veille efficace et régulière, j'ai mis en place un <strong>système de collecte automatisée</strong> s'appuyant sur plusieurs outils complémentaires. L'objectif : ne jamais manquer une information pertinente sans y passer des heures quotidiennement.
+  </p>
+
+  <!-- Flow -->
+  <div class="flow reveal">
+    <div class="flow-step">
+      <span class="icon">📡</span>
+      <div class="label">Collecte</div>
+      <div class="sub">Sources RSS & alertes</div>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="icon">🔄</span>
+      <div class="label">Agrégation</div>
+      <div class="sub">Centralisation Feedly</div>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="icon">🔔</span>
+      <div class="label">Notification</div>
+      <div class="sub">Alertes en temps réel</div>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="icon">📌</span>
+      <div class="label">Sauvegarde</div>
+      <div class="sub">Pocket / Raindrop</div>
+    </div>
+    <span class="flow-arrow">→</span>
+    <div class="flow-step">
+      <span class="icon">📊</span>
+      <div class="label">Analyse</div>
+      <div class="sub">Synthèse & partage</div>
+    </div>
+  </div>
+
+  <!-- Outils -->
+  <div class="tools-grid" style="margin-top:2.5rem;">
+    <div class="tool-card reveal">
+      <span class="tool-icon">📰</span>
+      <div class="tool-name">Feedly</div>
+      <div class="tool-type">Agrégateur RSS</div>
+      <p class="tool-desc">Agrégateur RSS qui centralise automatiquement les articles de toutes mes sources cybersécurité en un seul endroit. Je peux créer des flux thématiques par catégorie (CVE, Zero Trust, IA...) et recevoir les mises à jour en temps réel.</p>
+      <a href="https://feedly.com" target="_blank" class="tool-url">→ feedly.com</a>
+    </div>
+
+    <div class="tool-card reveal">
+      <span class="tool-icon">🔔</span>
+      <div class="tool-name">Google Alerts</div>
+      <div class="tool-type">Surveillance mots-clés</div>
+      <p class="tool-desc">Surveillance automatique de mots-clés spécifiques sur le web. Dès qu'un article, un rapport ou une actualité mentionne mes sujets cibles (ex : "IA cybersécurité", "Zero Trust 2025", "CVE critique"), je reçois une alerte email.</p>
+      <a href="https://alerts.google.com" target="_blank" class="tool-url">→ alerts.google.com</a>
+    </div>
+
+    <div class="tool-card reveal">
+      <span class="tool-icon">🐦</span>
+      <div class="tool-name">X / Twitter (listes)</div>
+      <div class="tool-type">Réseau social spécialisé</div>
+      <p class="tool-desc">Listes privées regroupant des chercheurs en sécurité, des organismes (ANSSI, CERT-FR) et des éditeurs de sécurité. Permet de suivre les annonces de vulnérabilités et les tendances en temps quasi-réel.</p>
+    </div>
+
+    <div class="tool-card reveal">
+      <span class="tool-icon">📌</span>
+      <div class="tool-name">Pocket / Raindrop</div>
+      <div class="tool-type">Sauvegarde & organisation</div>
+      <p class="tool-desc">Outils de bookmarking permettant de sauvegarder les articles intéressants pour les consulter plus tard, avec un système de tags pour retrouver facilement une information (ex : #zero-trust, #passkeys, #deepfake).</p>
+      <a href="https://raindrop.io" target="_blank" class="tool-url">→ raindrop.io</a>
+    </div>
+
+    <div class="tool-card reveal">
+      <span class="tool-icon">📋</span>
+      <div class="tool-name">Notion</div>
+      <div class="tool-type">Base de connaissances</div>
+      <p class="tool-desc">Base de données personnelle où je consigne les informations clés issues de ma veille : résumés d'articles, fiches techniques sur les nouvelles CVE, tableaux de comparaison d'outils de sécurité.</p>
+      <a href="https://notion.so" target="_blank" class="tool-url">→ notion.so</a>
+    </div>
+
+    <div class="tool-card reveal">
+      <span class="tool-icon">🛡️</span>
+      <div class="tool-name">NVD / CERT-FR</div>
+      <div class="tool-type">Sources officielles</div>
+      <p class="tool-desc">Consultation régulière de la base NVD (National Vulnerability Database) pour les nouvelles CVE, et du CERT-FR (ANSSI) pour les alertes de sécurité officielles touchant les systèmes d'information français.</p>
+      <a href="https://www.cert.ssi.gouv.fr/" target="_blank" class="tool-url">→ cert.ssi.gouv.fr</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ======================== SUJET DE VEILLE ======================== -->
+<section class="content-section" style="padding-top:3.5rem;">
+  <div class="section-label">Sujet de veille</div>
+  <h2 class="section-title">L'impact de l'IA sur les systèmes de sécurité</h2>
+
+  <!-- Stats -->
+  <div class="stat-cards">
+    <div class="stat-card reveal"><span class="num">81%</span><span class="lbl">Préoccupés par les risques IA</span></div>
+    <div class="stat-card reveal"><span class="num">93%</span><span class="lbl">Entreprises anticipant des menaces IA</span></div>
+    <div class="stat-card reveal"><span class="num">-55%</span><span class="lbl">Réduction coûts incidents (IBM)</span></div>
+    <div class="stat-card reveal"><span class="num">17%</span><span class="lbl">Collaborateurs formés seulement</span></div>
+  </div>
+
+  <!-- L'IA défensive -->
+  <div class="topic-header reveal">
+    <span class="topic-tag">IA Défensive</span>
+    <h3>L'IA comme bouclier : protection en temps réel</h3>
+    <p>L'IA permet une détection d'anomalies en temps réel en apprenant le comportement normal d'un système, puis en repérant immédiatement toute déviation suspecte.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:2rem;">
+    <div class="content-block reveal">
+      <h4>🔵 Darktrace</h4>
+      <p>Détection temps réel des cybermenaces basée sur l'IA comportementale. <strong>Simulation d'attaques</strong>, protection cloud et objets connectés. Capable de s'auto-adapter aux nouvelles menaces sans mise à jour manuelle.</p>
+    </div>
+    <div class="content-block reveal">
+      <h4>🔵 CrowdStrike Falcon</h4>
+      <p>Machine learning pour la protection des terminaux. <strong>IA comportementale</strong> analysant des milliards de points de données pour identifier les patterns d'attaque avant qu'ils ne se produisent.</p>
+    </div>
+  </div>
+
+  <!-- Cas concrets défensifs -->
+  <div class="case-study reveal">
+    <div class="case-study-header">
+      <h4>Détection automatique de ransomware</h4>
+      <span class="case-status status-ok">✓ Attaque bloquée</span>
+    </div>
+    <div class="case-study-body">
+      <div class="case-step"><span class="case-step-num">01</span><span class="case-step-text">Réception d'un <strong>email suspect</strong> avec pièce jointe malveillante</span></div>
+      <div class="case-step"><span class="case-step-num">02</span><span class="case-step-text">L'IA détecte un <strong>comportement anormal</strong> à l'ouverture</span></div>
+      <div class="case-step"><span class="case-step-num">03</span><span class="case-step-text">Ouverture automatique en <strong>sandbox</strong> (environnement isolé)</span></div>
+      <div class="case-step"><span class="case-step-num">04</span><span class="case-step-text">Identification et blocage du <strong>ransomware</strong> — attaque stoppée en quelques secondes</span></div>
+    </div>
+  </div>
+
+  <div class="case-study reveal">
+    <div class="case-study-header">
+      <h4>Authentification adaptative (Microsoft — MFA)</h4>
+      <span class="case-status status-ok">-98,56% compromissions</span>
+    </div>
+    <div class="case-study-body">
+      <p style="color:var(--muted);font-size:0.85rem;line-height:1.65;margin-bottom:1rem;">L'IA calcule un score de risque pour chaque tentative de connexion :</p>
+      <div class="case-step"><span class="case-step-num">+50</span><span class="case-step-text"><strong>Nouveau pays</strong> de connexion</span></div>
+      <div class="case-step"><span class="case-step-num">+30</span><span class="case-step-text"><strong>Nouvel appareil</strong> non reconnu</span></div>
+      <div class="case-step"><span class="case-step-num">+20</span><span class="case-step-text"><strong>Horaire inhabituel</strong> (ex : 3h du matin)</span></div>
+      <div class="case-step"><span class="case-step-num">&gt;80</span><span class="case-step-text">Déclenchement automatique du <strong>MFA renforcé</strong> (mot de passe + SMS + appel)</span></div>
+    </div>
+  </div>
+
+  <!-- L'IA offensive -->
+  <div class="topic-header reveal" style="margin-top:3rem;">
+    <span class="topic-tag" style="background:rgba(239,68,68,0.06);border-color:rgba(239,68,68,0.25);color:#f87171;">IA Offensive</span>
+    <h3>L'IA comme arme : nouvelles menaces</h3>
+    <p>Si l'IA renforce la défense, elle est également exploitée par les attaquants pour automatiser et personnaliser leurs attaques à une échelle inédite.</p>
+  </div>
+
+  <div class="grid-2" style="margin-bottom:1.5rem;">
+    <div class="content-block reveal">
+      <h4>⚠️ Code malveillant auto-généré</h4>
+      <p><strong>70%+</strong> des développeurs utilisent l'IA pour générer du code. Les hackers aussi. Création rapide de malwares ciblés, exploitation automatisée de failles zero-day.</p>
+    </div>
+    <div class="content-block reveal">
+      <h4>⚠️ Phishing ultra-personnalisé</h4>
+      <p>L'IA rédige des emails sans fautes, personnalisés par victime, avec création de <strong>deepfakes</strong> vocaux et vidéo. <strong>75%</strong> des entreprises ont subi un incident deepfake en 2024.</p>
+    </div>
+  </div>
+
+  <div class="case-study reveal">
+    <div class="case-study-header">
+      <h4>Deepfake financier — Hong Kong, 2024</h4>
+      <span class="case-status status-warn">⚠ 25 millions $ volés</span>
+    </div>
+    <div class="case-study-body">
+      <div class="case-step"><span class="case-step-num">01</span><span class="case-step-text">Un employé reçoit un appel <strong>deepfake vocal</strong> imitant parfaitement son PDG</span></div>
+      <div class="case-step"><span class="case-step-num">02</span><span class="case-step-text">La réunion video implique plusieurs "collègues" — tous des <strong>deepfakes en temps réel</strong></span></div>
+      <div class="case-step"><span class="case-step-num">03</span><span class="case-step-text">L'employé effectue un virement de <strong>25 millions de dollars</strong></span></div>
+    </div>
+  </div>
+
+  <!-- Nouvelles tendances -->
+  <div class="topic-header reveal" style="margin-top:3rem;">
+    <span class="topic-tag">Tendances 2025</span>
+    <h3>Zero Trust & Authentification sans mot de passe</h3>
+    <p>Les nouvelles architectures de sécurité répondent directement aux nouvelles menaces IA en adoptant le principe "ne jamais faire confiance, toujours vérifier".</p>
+  </div>
+
+  <div class="grid-3">
+    <div class="content-block reveal">
+      <h4>🔐 Passkeys</h4>
+      <p>Remplacement des mots de passe par des <strong>clés cryptographiques</strong>. Résistant au phishing, 14x plus rapide (3s vs 69s), 95% de succès. Supporté par Google, Apple, Microsoft. Adoption : 39% (2022) → <strong>57%</strong> (2024).</p>
+    </div>
+    <div class="content-block reveal">
+      <h4>🛡️ Zero Trust</h4>
+      <p>Vérification <strong>continue</strong> de chaque accès, même en interne. Résultats : <strong>-60% d'incidents</strong> (Google, Netflix). Marché : 19,2 Mds$ en 2024. <strong>61%</strong> des organisations l'ont adopté.</p>
+    </div>
+    <div class="content-block reveal">
+      <h4>🎯 Enjeux 2025</h4>
+      <p>Formation massive (seulement 17% formés), généralisation du passwordless, adoption Zero Trust, et nouvelles réglementations <strong>AI Act + NIS2</strong> pour encadrer l'IA en sécurité.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SOURCES -->
+<section class="content-section" style="padding-top:3.5rem;">
+  <div class="section-label">Références</div>
+  <h2 class="section-title">Sources principales</h2>
+  <div class="sources-list">
+    <div class="source-item reveal"><span class="source-num">[1]</span><div>Lovell Consulting (2025) — L'IA en 2024 : risques, mesures de protection<br><a href="https://lovell-consulting.com/ia-2024-risques-mesures-protection-usages-ia-cyber/" target="_blank">lovell-consulting.com</a></div></div>
+    <div class="source-item reveal"><span class="source-num">[2]</span><div>Free-Work (2024) — Cybersécurité et IA : quels sont les grands risques ?<br><a href="https://www.free-work.com/fr/tech-it/blog/actualites-informatiques/cybersecurite-en-2024-des-risques-toujours-plus-grands" target="_blank">free-work.com</a></div></div>
+    <div class="source-item reveal"><span class="source-num">[3]</span><div>ANSSI / CERT-FR — Alertes et bulletins officiels de sécurité<br><a href="https://www.cert.ssi.gouv.fr/" target="_blank">cert.ssi.gouv.fr</a></div></div>
+    <div class="source-item reveal"><span class="source-num">[4]</span><div>FIDO Alliance — Passkeys : Authentification sans mot de passe<br><a href="https://fidoalliance.org/passkeys/" target="_blank">fidoalliance.org</a></div></div>
+    <div class="source-item reveal"><span class="source-num">[5]</span><div>Fortinet — L'IA dans la cybersécurité : avantages clés et stratégies<br><a href="https://www.fortinet.com/fr/resources/cyberglossary/artificial-intelligence-in-cybersecurity" target="_blank">fortinet.com</a></div></div>
+    <div class="source-item reveal"><span class="source-num">[6]</span><div>SYNETIS (2025) — Tendances cybersécurité 2025, Zero Trust<br><a href="https://www.synetis.com/cybersecurite-le-point-sur-les-tendances-qui-ont-marque-2025" target="_blank">synetis.com</a></div></div>
+    <div class="source-item reveal"><span class="source-num">[7]</span><div>Sénat (2024) — Les risques de l'IA générative<br><a href="https://www.senat.fr/rap/r24-170/r24-17018.html" target="_blank">senat.fr</a></div></div>
+    <div class="source-item reveal"><span class="source-num">+23</span><div>Sources supplémentaires : CNIL, NVD, TrustBuilder, Bitdefender, EASI, Vaadata, Entrust, Okta, Gartner, PWC...</div></div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025–2026 <span>Benjamin Sabaye</span> — BTS SIO SISR · Ingetis Paris</p>
+  <p><a href="index.html" style="color:var(--muted);text-decoration:none;font-family:var(--font-mono);font-size:0.7rem;">← Retour à l'accueil</a></p>
+</footer>
+<script src="main.js"></script>
+</body>
+</html>

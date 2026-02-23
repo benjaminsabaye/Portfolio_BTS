@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>À propos — Benjamin Sabaye</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 4rem; align-items: start; }
+.photo-wrap { position: relative; }
+.photo-wrap::after {
+  content: '';
+  position: absolute; inset: -8px;
+  border: 1px solid rgba(0,229,255,0.3); border-radius: 6px;
+  transform: translate(8px, 8px);
+  pointer-events: none;
+}
+.photo-wrap img { width: 100%; border-radius: 4px; display: block; filter: grayscale(15%); }
+.photo-placeholder { width: 100%; height: 380px; background: var(--surface2); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--muted); font-family: var(--font-mono); font-size: 0.8rem; }
+.about-body p { color: var(--muted); font-size: 1rem; line-height: 1.8; margin-bottom: 1.25rem; }
+.about-body p strong { color: var(--text); }
+.about-body h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem; margin-top: 2rem; letter-spacing: -0.01em; }
+
+.info-row { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.5rem; }
+.info-item { display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.info-icon { color: var(--accent); font-style: normal; width: 1.2rem; text-align: center; }
+
+.profile-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.75rem; margin-top: 1.5rem; }
+.profile-card h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+
+.cta-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 2rem; }
+
+@media (max-width: 900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .photo-wrap { max-width: 280px; }
+}
+</style>
+</head>
+<body>
+<div class="cursor-dot" id="cursor"></div>
+<nav>
+  <a href="index.html" class="nav-logo">BS // BTS SIO SISR</a>
+  <ul class="nav-links">
+    <li><a href="about.html">Profil</a></li>
+    <li><a href="entreprises.html">Stages</a></li>
+    <li><a href="bts.html">BTS SIO</a></li>
+    <li><a href="e5.html">Épreuve E5</a></li>
+    <li><a href="veille.html">Veille</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-tag anim-1">Profil</div>
+  <h1 class="anim-2">À propos<br>de moi</h1>
+  <p class="anim-3">Étudiant passionné, tourné vers les infrastructures réseau et la cybersécurité.</p>
+</div>
+
+<hr class="divider">
+
+<section class="content-section" style="padding-top:3.5rem;">
+  <div class="about-grid">
+    <!-- Photo -->
+    <div class="photo-wrap reveal">
+      <img src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/whatsapp-image-2025-12-09-at-12.01.29-3.jpeg"
+           alt="Benjamin Sabaye"
+           onerror="this.outerHTML='<div class=\'photo-placeholder\'>[ Photo ]</div>'">
+      <div class="profile-card" style="margin-top:1.5rem;">
+        <h4>Informations</h4>
+        <div class="info-row">
+          <div class="info-item"><span class="info-icon">📍</span> Paris, France</div>
+          <div class="info-item"><span class="info-icon">🎓</span> BTS SIO SISR — Ingetis</div>
+          <div class="info-item"><span class="info-icon">📅</span> 2025 – 2026</div>
+          <div class="info-item"><span class="info-icon">🔗</span>
+            <a href="https://www.linkedin.com/in/sabaye-benjamin" target="_blank" style="color:var(--accent);text-decoration:none;">linkedin.com/in/sabaye-benjamin</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="about-body reveal">
+      <h3>Qui suis-je ?</h3>
+      <p>L'informatique me passionne depuis l'adolescence. J'ai choisi de m'y consacrer pleinement en intégrant un <strong>BTS SIO</strong>, une formation qui offre un équilibre idéal entre enseignements théoriques et mise en pratique concrète.</p>
+      <p>L'option <strong>SISR (Solutions d'Infrastructure, Systèmes et Réseaux)</strong> s'est imposée naturellement : la maîtrise des réseaux et des systèmes constitue le socle indispensable pour appréhender les enjeux de la <strong>cybersécurité</strong>, mon domaine de prédilection.</p>
+      <p>Durant ma formation, j'ai eu l'occasion de mettre en pratique ces apprentissages lors de <strong>deux stages</strong> en entreprise — chez <strong>Infopro Digital</strong> (virtualisation, AWS, Ansible) et chez <strong>LexisNexis</strong> (support utilisateur, déploiement, gestion de parc).</p>
+
+      <h3>Compétences techniques</h3>
+      <div class="chips">
+        <span class="chip hl">Cybersécurité</span>
+        <span class="chip hl">Réseaux (TCP/IP, VLAN, VPN)</span>
+        <span class="chip hl">Administration systèmes</span>
+        <span class="chip">Linux (Debian, Ubuntu)</span>
+        <span class="chip">Windows Server</span>
+        <span class="chip">Active Directory</span>
+        <span class="chip">Cisco / Routing</span>
+        <span class="chip">Proxmox / Virtualisation</span>
+        <span class="chip">AWS (bases)</span>
+        <span class="chip">Ansible</span>
+        <span class="chip">ServiceNow</span>
+        <span class="chip">Microsoft Intune</span>
+        <span class="chip">Dual-boot</span>
+        <span class="chip">DHCP / DNS</span>
+        <span class="chip">Firewall</span>
+        <span class="chip">Zero Trust</span>
+      </div>
+
+      <h3>Objectifs</h3>
+      <p>Je souhaite approfondir mes compétences en <strong>cybersécurité</strong> et en administration des infrastructures. Le BTS SIO SISR est pour moi une première étape avant une poursuite d'études ou une insertion dans le secteur IT, idéalement dans un poste lié à la <strong>sécurité des systèmes d'information</strong>.</p>
+
+      <div class="cta-row">
+        <a href="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/curriculum-vitae.pdf" class="btn btn-primary" target="_blank">↓ Télécharger mon CV</a>
+        <a href="https://www.linkedin.com/in/sabaye-benjamin" class="btn btn-ghost" target="_blank">Voir mon LinkedIn →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025–2026 <span>Benjamin Sabaye</span> — BTS SIO SISR · Ingetis Paris</p>
+  <p><a href="index.html" style="color:var(--muted);text-decoration:none;font-family:var(--font-mono);font-size:0.7rem;">← Retour à l'accueil</a></p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
