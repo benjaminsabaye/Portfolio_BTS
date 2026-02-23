@@ -127,22 +127,25 @@
       <h3>Envoyer un message</h3>
       <p>Pour toute demande ou prise de contact, remplissez ce formulaire ou écrivez directement à sabaye6@gmail.com.</p>
 
-      <div id="formContent">
-        <div class="form-group">
-          <label>Nom</label>
-          <input type="text" id="fname" placeholder="Votre nom complet">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" id="femail" placeholder="votre@email.com">
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea id="fmessage" rows="5" placeholder="Votre message..."></textarea>
-        </div>
-        <button class="btn btn-primary" onclick="handleSubmit()" style="width:100%;justify-content:center;">Envoyer →</button>
-        <p class="form-note">Vous pouvez aussi contacter directement via <a href="mailto:sabaye6@gmail.com">sabaye6@gmail.com</a></p>
-      </div>
+      <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="contact">
+  <p style="display:none;"><input name="bot-field"></p>
+
+  <div class="form-group">
+    <label>Nom</label>
+    <input type="text" name="name" placeholder="Votre nom complet" required>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" name="email" placeholder="votre@email.com" required>
+  </div>
+  <div class="form-group">
+    <label>Message</label>
+    <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer →</button>
+  <p class="form-note">Ou directement via <a href="mailto:sabaye6@gmail.com">sabaye6@gmail.com</a></p>
+</form>
 
       <div class="form-success" id="formSuccess">
         <span class="check">✅</span>
