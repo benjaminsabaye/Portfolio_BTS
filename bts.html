@@ -1,363 +1,726 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BTS SIO & Mon École — Benjamin Sabaye</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<style>
-.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.option-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2rem; position: relative; overflow: hidden; transition: border-color 0.3s; }
-.option-card:hover { border-color: rgba(0,229,255,0.25); }
-.option-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-.option-sisr::before { background: var(--accent); }
-.option-slam::before { background: var(--accent2); }
-.option-badge { font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.7rem; border-radius: 2px; display: inline-block; margin-bottom: 1rem; }
-.badge-sisr { background: rgba(0,229,255,0.08); color: var(--accent); border: 1px solid rgba(0,229,255,0.25); }
-.badge-slam { background: rgba(124,58,237,0.08); color: #a78bfa; border: 1px solid rgba(124,58,237,0.25); }
-.option-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem; }
-.option-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BTS SIO & Mon École — Benjamin Sabaye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .options-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .option-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+      .option-card:hover {
+        border-color: rgba(0, 229, 255, 0.25);
+      }
+      .option-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+      }
+      .option-sisr::before {
+        background: var(--accent);
+      }
+      .option-slam::before {
+        background: var(--accent2);
+      }
+      .option-badge {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.2rem 0.7rem;
+        border-radius: 2px;
+        display: inline-block;
+        margin-bottom: 1rem;
+      }
+      .badge-sisr {
+        background: rgba(0, 229, 255, 0.08);
+        color: var(--accent);
+        border: 1px solid rgba(0, 229, 255, 0.25);
+      }
+      .badge-slam {
+        background: rgba(124, 58, 237, 0.08);
+        color: #a78bfa;
+        border: 1px solid rgba(124, 58, 237, 0.25);
+      }
+      .option-card h3 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+      .option-card p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
 
-.school-section { display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: start; }
-.school-logo-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 2.5rem; display: flex; align-items: center; justify-content: center; }
-.school-logo-wrap img { max-width: 200px; width: 100%; object-fit: contain; filter: brightness(0) invert(1) opacity(0.9); }
-.school-info h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.75rem; }
-.school-info p { color: var(--muted); font-size: 0.95rem; line-height: 1.75; margin-bottom: 1rem; }
-.school-info p strong { color: var(--text); }
-.school-meta { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.25rem; }
-.school-meta-item { display: flex; align-items: center; gap: 0.6rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); }
+      .school-section {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 3rem;
+        align-items: start;
+      }
+      .school-logo-wrap {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .school-logo-wrap img {
+        max-width: 200px;
+        width: 100%;
+        object-fit: contain;
+        filter: brightness(0) invert(1) opacity(0.9);
+      }
+      .school-info h3 {
+        font-size: 1.25rem;
+        font-weight: 800;
+        margin-bottom: 0.75rem;
+      }
+      .school-info p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.75;
+        margin-bottom: 1rem;
+      }
+      .school-info p strong {
+        color: var(--text);
+      }
+      .school-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
+      }
+      .school-meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
 
-.project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; margin-bottom: 1.5rem; }
-.project-card:hover { border-color: rgba(0,229,255,0.25); }
-.project-header { padding: 1.75rem 2rem 0; }
-.project-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; }
-.project-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
-.project-context { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-bottom: 1rem; }
-.project-img { width: 100%; display: block; max-height: 280px; object-fit: cover; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); filter: brightness(0.85) contrast(1.05); }
-.project-body { padding: 1.5rem 2rem; }
-.project-body p { color: var(--muted); font-size: 0.9rem; line-height: 1.75; margin-bottom: 1rem; }
-.project-body p strong { color: var(--text); }
-.skills-row { margin-top: 0.75rem; }
-.skills-row .label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+      .project-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
+        margin-bottom: 1.5rem;
+      }
+      .project-card:hover {
+        border-color: rgba(0, 229, 255, 0.25);
+      }
+      .project-header {
+        padding: 1.75rem 2rem 0;
+      }
+      .project-num {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--accent);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+      .project-card h3 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .project-context {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+      .project-img {
+        width: 100%;
+        display: block;
+        max-height: 280px;
+        object-fit: cover;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        filter: brightness(0.85) contrast(1.05);
+      }
+      .project-body {
+        padding: 1.5rem 2rem;
+      }
+      .project-body p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.75;
+        margin-bottom: 1rem;
+      }
+      .project-body p strong {
+        color: var(--text);
+      }
+      .skills-row {
+        margin-top: 0.75rem;
+      }
+      .skills-row .label {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--muted);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
 
-/* RÉALISATIONS E5 */
-.realisation-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: border-color 0.3s;
-}
-.realisation-card:hover { border-color: rgba(0,229,255,0.25); }
-.realisation-header {
-  padding: 1.75rem 2rem 1.25rem;
-  border-bottom: 1px solid var(--border);
-  display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem;
-  position: relative;
-}
-.realisation-header::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-}
-.realisation-header h3 {
-  width: 100%;
-  font-size: 1.05rem; font-weight: 700;
-  margin-top: 0.25rem; margin-bottom: 0.2rem;
-}
-.realisation-num {
-  font-family: var(--font-mono); font-size: 0.65rem;
-  color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase;
-}
-.realisation-tag {
-  font-family: var(--font-mono); font-size: 0.65rem;
-  padding: 0.2rem 0.7rem; border-radius: 2px;
-  letter-spacing: 0.12em; text-transform: uppercase;
-}
-.tag-reseau { background: rgba(0,229,255,0.08); color: var(--accent); border: 1px solid rgba(0,229,255,0.25); }
-.tag-systeme { background: rgba(124,58,237,0.08); color: #a78bfa; border: 1px solid rgba(124,58,237,0.25); }
-.realisation-context {
-  font-family: var(--font-mono); font-size: 0.68rem;
-  color: var(--muted); width: 100%;
-}
-.realisation-body { padding: 1.75rem 2rem; display: flex; flex-direction: column; gap: 1.25rem; }
-.realisation-org, .realisation-desc { display: flex; flex-direction: column; gap: 0.5rem; }
-.org-label {
-  font-family: var(--font-mono); font-size: 0.65rem;
-  color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase;
-}
-.realisation-org p, .realisation-desc p {
-  color: var(--muted); font-size: 0.9rem; line-height: 1.75;
-}
-.realisation-org p strong, .realisation-desc p strong { color: var(--text); }
-.realisation-footer {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 1rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--border);
-}
-.realisation-date {
-  font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted);
-}
+      /* RÉALISATIONS E5 */
+      .realisation-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+      .realisation-card:hover {
+        border-color: rgba(0, 229, 255, 0.25);
+      }
+      .realisation-header {
+        padding: 1.75rem 2rem 1.25rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+        position: relative;
+      }
+      .realisation-header::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+      }
+      .realisation-header h3 {
+        width: 100%;
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-top: 0.25rem;
+        margin-bottom: 0.2rem;
+      }
+      .realisation-num {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--muted);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      .realisation-tag {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        padding: 0.2rem 0.7rem;
+        border-radius: 2px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+      .tag-reseau {
+        background: rgba(0, 229, 255, 0.08);
+        color: var(--accent);
+        border: 1px solid rgba(0, 229, 255, 0.25);
+      }
+      .tag-systeme {
+        background: rgba(124, 58, 237, 0.08);
+        color: #a78bfa;
+        border: 1px solid rgba(124, 58, 237, 0.25);
+      }
+      .realisation-context {
+        font-family: var(--font-mono);
+        font-size: 0.68rem;
+        color: var(--muted);
+        width: 100%;
+      }
+      .realisation-body {
+        padding: 1.75rem 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .realisation-org,
+      .realisation-desc {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .org-label {
+        font-family: var(--font-mono);
+        font-size: 0.65rem;
+        color: var(--accent);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+      .realisation-org p,
+      .realisation-desc p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.75;
+      }
+      .realisation-org p strong,
+      .realisation-desc p strong {
+        color: var(--text);
+      }
+      .realisation-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        padding-top: 1.25rem;
+        border-top: 1px solid var(--border);
+      }
+      .realisation-date {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        color: var(--muted);
+      }
 
-@media (max-width: 768px) {
-  .options-grid { grid-template-columns: 1fr; }
-  .school-section { grid-template-columns: 1fr; }
-}
-</style>
-</head>
-<body>
-<div class="cursor-dot" id="cursor"></div>
-<nav>
-  <a href="index.html" class="nav-logo">BS // BTS SIO SISR</a>
-  <ul class="nav-links">
-    <li><a href="about.html">Profil</a></li>
-    <li><a href="entreprises.html">Stages</a></li>
-    <li><a href="bts.html">BTS SIO</a></li>
-    <li><a href="e5.html">Épreuve E5</a></li>
-    <li><a href="veille.html">Veille</a></li>
-    <li><a href="certifications.html">Certifications</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
-</nav>
+      @media (max-width: 768px) {
+        .options-grid {
+          grid-template-columns: 1fr;
+        }
+        .school-section {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor-dot" id="cursor"></div>
+    <nav>
+      <a href="index.html" class="nav-logo">BS // BTS SIO SISR</a>
+      <ul class="nav-links">
+        <li><a href="about.html">Profil</a></li>
+        <li><a href="entreprises.html">Stages</a></li>
+        <li><a href="bts.html">BTS SIO</a></li>
+        <li><a href="e5.html">Épreuve E5</a></li>
+        <li><a href="veille.html">Veille</a></li>
+        <li><a href="certifications.html">Certifications</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
 
-<div class="page-header">
-  <div class="page-header-tag anim-1">Formation</div>
-  <h1 class="anim-2">BTS SIO<br>& Mon École</h1>
-  <p class="anim-3">Présentation de la formation, de l'école Ingetis et des projets réalisés en cours d'année.</p>
-</div>
-
-<hr class="divider">
-
-<!-- LE BTS SIO -->
-<section class="content-section" style="padding-top:3.5rem;">
-  <div class="section-label">La formation</div>
-  <h2 class="section-title">Le BTS SIO</h2>
-  <p style="color:var(--muted);font-size:1rem;line-height:1.8;max-width:700px;margin-bottom:2.5rem;" class="reveal">
-    Le BTS SIO (Services Informatiques aux Organisations) est une formation de niveau Bac+2 qui prépare aux métiers de l'informatique en entreprise. Il propose deux options selon la spécialisation choisie.
-  </p>
-  <div class="options-grid">
-    <div class="option-card option-sisr reveal">
-      <span class="option-badge badge-sisr">Mon option · SISR</span>
-      <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
-      <p>Forme des professionnels capables d'installer, configurer et administrer des serveurs et des équipements réseau, de garantir la disponibilité et la sécurité des systèmes d'information. Porte d'entrée naturelle vers les métiers de la <strong>cybersécurité</strong>.</p>
-      <div class="chips" style="margin-top:1.25rem;">
-        <span class="chip hl">Réseaux</span><span class="chip hl">Sécurité</span><span class="chip hl">Systèmes</span><span class="chip">Cloud</span><span class="chip">Virtualisation</span>
-      </div>
+    <div class="page-header">
+      <div class="page-header-tag anim-1">Formation</div>
+      <h1 class="anim-2">BTS SIO<br />& Mon École</h1>
+      <p class="anim-3">
+        Présentation de la formation, de l'école Ingetis et des projets réalisés
+        en cours d'année.
+      </p>
     </div>
-    <div class="option-card option-slam reveal">
-      <span class="option-badge badge-slam">Option · SLAM</span>
-      <h3>Solutions Logicielles et Applications Métiers</h3>
-      <p>Forme des développeurs capables de concevoir, coder et maintenir des applications répondant aux besoins des organisations. Elle couvre les langages de programmation, les bases de données et les méthodes de développement.</p>
-      <div class="chips" style="margin-top:1.25rem;">
-        <span class="chip purple">Développement</span><span class="chip purple">BDD</span><span class="chip purple">Web</span><span class="chip purple">Applications</span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<hr class="divider">
+    <hr class="divider" />
 
-<!-- ÉCOLE -->
-<section class="content-section" style="padding-top:3.5rem;">
-  <div class="section-label">Mon établissement</div>
-  <h2 class="section-title">Ingetis Paris</h2>
-  <div class="school-section">
-    <div class="school-logo-wrap reveal">
-      <img src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/logo_final_2.png.png"
-           alt="Ingetis"
-           onerror="this.outerHTML='<div style=\'font-size:2rem;font-weight:800;color:var(--accent);font-family:var(--font-display)\'>INGETIS</div>'">
-    </div>
-    <div class="school-info reveal">
-      <h3>Centre de formation IT spécialisé</h3>
-      <p><strong>Ingetis</strong> est un centre de formation spécialisé dans les métiers de l'informatique et du numérique, proposant le BTS SIO avec ses deux options SISR et SLAM.</p>
-      <p>L'établissement forme les étudiants aux compétences techniques essentielles du secteur IT : gestion du patrimoine informatique, administration des systèmes et réseaux, développement d'applications, gestion de projets et support utilisateur.</p>
-      <p>Ingetis accompagne ses apprenants dans leur insertion professionnelle en combinant <strong>enseignement théorique, projets pratiques et stages en entreprise</strong>.</p>
-      <div class="school-meta">
-        <div class="school-meta-item">📍 62 bis rue Gay Lussac, 75005 Paris</div>
-        <div class="school-meta-item">🚇 RER B — Luxembourg</div>
-        <div class="school-meta-item">📞 01 42 01 42 08</div>
-        <div class="school-meta-item">🌐 <a href="https://ingetis.com/" target="_blank" style="color:var(--accent);text-decoration:none;">ingetis.com</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<!-- PROJETS -->
-<section class="content-section" style="padding-top:3.5rem;">
-  <div class="section-label">Travaux pratiques</div>
-  <h2 class="section-title">Projets réalisés</h2>
-
-  <!-- Projet 1 -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-num">Projet 01</div>
-      <h3>Infrastructure réseau multi-sites avec routage, DHCP & DNS</h3>
-      <div class="project-context">Conception et mise en place d'une infrastructure réseau interconnectant plusieurs sites distants avec accès Internet</div>
-    </div>
-    <img src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/capture-decran-2025-12-17-214557.png"
-         alt="Schéma projet 1" class="project-img"
-         onerror="this.style.display='none'">
-    <div class="project-body">
-      <p>Déploiement d'une architecture réseau comprenant un <strong>routeur central</strong> assurant l'interconnexion entre deux réseaux locaux distincts. Un premier site hébergeait les services DNS et DHCP ; le routeur gérait la traduction NAT pour l'accès Internet.</p>
-      <div class="skills-row">
-        <div class="label">Compétences mobilisées</div>
-        <div class="chips">
-          <span class="chip hl">Routage inter-réseaux</span>
-          <span class="chip hl">DHCP</span>
-          <span class="chip hl">DNS</span>
-          <span class="chip">NAT/PAT</span>
-          <span class="chip">Adressage IP</span>
-          <span class="chip">Tests de connectivité</span>
+    <!-- LE BTS SIO -->
+    <section class="content-section" style="padding-top: 3.5rem">
+      <div class="section-label">La formation</div>
+      <h2 class="section-title">Le BTS SIO</h2>
+      <p
+        style="
+          color: var(--muted);
+          font-size: 1rem;
+          line-height: 1.8;
+          max-width: 700px;
+          margin-bottom: 2.5rem;
+        "
+        class="reveal">
+        Le BTS SIO (Services Informatiques aux Organisations) est une formation
+        de niveau Bac+2 qui prépare aux métiers de l'informatique en entreprise.
+        Il propose deux options selon la spécialisation choisie.
+      </p>
+      <div class="options-grid">
+        <div class="option-card option-sisr reveal">
+          <span class="option-badge badge-sisr">Mon option · SISR</span>
+          <h3>Solutions d'Infrastructure, Systèmes et Réseaux</h3>
+          <p>
+            Forme des professionnels capables d'installer, configurer et
+            administrer des serveurs et des équipements réseau, de garantir la
+            disponibilité et la sécurité des systèmes d'information. Porte
+            d'entrée naturelle vers les métiers de la
+            <strong>cybersécurité</strong>.
+          </p>
+          <div class="chips" style="margin-top: 1.25rem">
+            <span class="chip hl">Réseaux</span
+            ><span class="chip hl">Sécurité</span
+            ><span class="chip hl">Systèmes</span><span class="chip">Cloud</span
+            ><span class="chip">Virtualisation</span>
+          </div>
+        </div>
+        <div class="option-card option-slam reveal">
+          <span class="option-badge badge-slam">Option · SLAM</span>
+          <h3>Solutions Logicielles et Applications Métiers</h3>
+          <p>
+            Forme des développeurs capables de concevoir, coder et maintenir des
+            applications répondant aux besoins des organisations. Elle couvre
+            les langages de programmation, les bases de données et les méthodes
+            de développement.
+          </p>
+          <div class="chips" style="margin-top: 1.25rem">
+            <span class="chip purple">Développement</span
+            ><span class="chip purple">BDD</span
+            ><span class="chip purple">Web</span
+            ><span class="chip purple">Applications</span>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Projet 2 -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-num">Projet 02</div>
-      <h3>Infrastructure réseau complexe avec DNS hiérarchique et DHCP relay</h3>
-      <div class="project-context">Déploiement d'une infrastructure distribuée avec délégation, relais et haute disponibilité</div>
-    </div>
-    <img src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/capture-decran-2025-12-17-214612.png"
-         alt="Schéma projet 2" class="project-img"
-         onerror="this.style.display='none'">
-    <div class="project-body">
-      <p>Architecture distribuée à trois serveurs : résolution DNS hiérarchique avec <strong>délégation de zones</strong>, mécanisme de relais DHCP inter-VLAN, basculement (failover) pour la haute disponibilité, et redirection Internet conditionnelle.</p>
-      <div class="skills-row">
-        <div class="label">Compétences mobilisées</div>
-        <div class="chips">
-          <span class="chip hl">DNS hiérarchique</span>
-          <span class="chip hl">Délégation de zones</span>
-          <span class="chip hl">DHCP relay</span>
-          <span class="chip">Haute disponibilité</span>
-          <span class="chip">Routage avancé</span>
-          <span class="chip">Segmentation réseau</span>
+    <hr class="divider" />
+
+    <!-- ÉCOLE -->
+    <section class="content-section" style="padding-top: 3.5rem">
+      <div class="section-label">Mon établissement</div>
+      <h2 class="section-title">Ingetis Paris</h2>
+      <div class="school-section">
+        <div class="school-logo-wrap reveal">
+          <img
+            src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/logo_final_2.png.png"
+            alt="Ingetis"
+            onerror="
+              this.outerHTML =
+                '<div style=\'font-size:2rem;font-weight:800;color:var(--accent);font-family:var(--font-display)\'>INGETIS</div>'
+            " />
+        </div>
+        <div class="school-info reveal">
+          <h3>Centre de formation IT spécialisé</h3>
+          <p>
+            <strong>Ingetis</strong> est un centre de formation spécialisé dans
+            les métiers de l'informatique et du numérique, proposant le BTS SIO
+            avec ses deux options SISR et SLAM.
+          </p>
+          <p>
+            L'établissement forme les étudiants aux compétences techniques
+            essentielles du secteur IT : gestion du patrimoine informatique,
+            administration des systèmes et réseaux, développement
+            d'applications, gestion de projets et support utilisateur.
+          </p>
+          <p>
+            Ingetis accompagne ses apprenants dans leur insertion
+            professionnelle en combinant
+            <strong
+              >enseignement théorique, projets pratiques et stages en
+              entreprise</strong
+            >.
+          </p>
+          <div class="school-meta">
+            <div class="school-meta-item">
+              📍 62 bis rue Gay Lussac, 75005 Paris
+            </div>
+            <div class="school-meta-item">🚇 RER B — Luxembourg</div>
+            <div class="school-meta-item">📞 01 42 01 42 08</div>
+            <div class="school-meta-item">
+              🌐
+              <a
+                href="https://ingetis.com/"
+                target="_blank"
+                style="color: var(--accent); text-decoration: none"
+                >ingetis.com</a
+              >
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Projet 3 -->
-  <div class="project-card reveal">
-    <div class="project-header">
-      <div class="project-num">Projet 03</div>
-      <h3>Annuaire centralisé & gestion de parc en environnement hybride</h3>
-      <div class="project-context">Mise en place d'un système de gestion centralisée combinant gestion des identités et gestion des ressources</div>
-    </div>
-    <img src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/capture-decran-2025-12-17-214535.png"
-         alt="Schéma projet 3" class="project-img"
-         onerror="this.style.display='none'">
-    <div class="project-body">
-      <p>Déploiement d'un <strong>Active Directory</strong> pour la gestion centralisée des comptes, des droits et des politiques de sécurité (GPO). Couplé à une solution ITSM (gestion de parc + ticketing), avec synchronisation automatique des identités entre les deux plateformes.</p>
-      <div class="skills-row">
-        <div class="label">Compétences mobilisées</div>
-        <div class="chips">
-          <span class="chip hl">Active Directory</span>
-          <span class="chip hl">GPO</span>
-          <span class="chip hl">Gestion de parc</span>
-          <span class="chip">Synchronisation LDAP</span>
-          <span class="chip">Système de tickets</span>
-          <span class="chip">Intégration multi-plateformes</span>
+    <hr class="divider" />
+
+    <!-- PROJETS -->
+    <section class="content-section" style="padding-top: 3.5rem">
+      <div class="section-label">Travaux pratiques</div>
+      <h2 class="section-title">Projets réalisés</h2>
+
+      <!-- Projet 1 -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-num">Projet 01</div>
+          <h3>Infrastructure réseau multi-sites avec routage, DHCP & DNS</h3>
+          <div class="project-context">
+            Conception et mise en place d'une infrastructure réseau
+            interconnectant plusieurs sites distants avec accès Internet
+          </div>
+        </div>
+        <img
+          src="./proj1.png"
+          alt="Schéma projet 1"
+          class="project-img"
+          onerror="this.style.display = 'none'" />
+        <div class="project-body">
+          <p>
+            Déploiement d'une architecture réseau comprenant un
+            <strong>routeur central</strong> assurant l'interconnexion entre
+            deux réseaux locaux distincts. Un premier site hébergeait les
+            services DNS et DHCP ; le routeur gérait la traduction NAT pour
+            l'accès Internet.
+          </p>
+          <div class="skills-row">
+            <div class="label">Compétences mobilisées</div>
+            <div class="chips">
+              <span class="chip hl">Routage inter-réseaux</span>
+              <span class="chip hl">DHCP</span>
+              <span class="chip hl">DNS</span>
+              <span class="chip">NAT/PAT</span>
+              <span class="chip">Adressage IP</span>
+              <span class="chip">Tests de connectivité</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<hr class="divider">
-
-<!-- RÉALISATIONS PROFESSIONNELLES E5 -->
-<section class="content-section" style="padding-top:3.5rem;">
-  <div class="section-label">Épreuve E5 — Annexes 7</div>
-  <h2 class="section-title">Réalisations professionnelles</h2>
-  <p style="color:var(--muted);font-size:1rem;line-height:1.8;max-width:700px;margin-bottom:2.5rem;" class="reveal">
-    Deux fiches de réalisations professionnelles rédigées dans le cadre de l'épreuve E5 du BTS SIO SISR, session 2026. Chaque fiche décrit un projet technique mené en autonomie, avec contexte, architecture déployée et compétences mobilisées.
-  </p>
-
-  <!-- RÉALISATION 1 — RÉSEAU -->
-  <div class="realisation-card reveal">
-    <div class="realisation-header">
-      <div class="realisation-num">Réalisation N°1</div>
-      <div class="realisation-tag tag-reseau">Réseau</div>
-      <h3>Segmentation VLAN et routage inter-VLAN — PME Brokestar</h3>
-      <p class="realisation-context">BTS SIO SISR · Session 2026 · Réalisation professionnelle</p>
-    </div>
-    <div class="realisation-body">
-      <div class="realisation-org">
-        <span class="org-label">Contexte</span>
-        <p>La PME Brokestar souhaite segmenter son réseau local afin de séparer deux populations d'utilisateurs (Techniciens support et Développeurs applicatifs) et isoler les services critiques dans un VLAN dédié. L'objectif est de limiter les domaines de diffusion, améliorer la sécurité logique et garantir l'attribution automatique d'adresses IP via un serveur DHCP unique.</p>
-      </div>
-      <div class="realisation-desc">
-        <span class="org-label">Description</span>
-        <p>L'architecture repose sur <strong>trois VLAN distincts</strong> : VLAN 10 (techniciens, 192.168.10.0/28), VLAN 20 (développeurs, 192.168.10.16/29) et VLAN 30 (serveurs critiques, 192.168.10.24/29). Le routage inter-VLAN est assuré par un routeur Cisco R1 via la méthode <strong>router-on-a-stick</strong> (sous-interfaces 802.1Q). Le switch Cisco 2960 gère les ports en mode access et un lien trunk transporte les trames étiquetées. Un serveur DHCP centralisé dans le VLAN 30 distribue les configurations réseau via <strong>ip helper-address</strong>.</p>
-      </div>
-      <div class="realisation-skills">
-        <div class="chips" style="margin-top:0;">
-          <span class="chip hl">VLAN 802.1Q</span>
-          <span class="chip hl">Router-on-a-stick</span>
-          <span class="chip hl">DHCP centralisé</span>
-          <span class="chip">Cisco IOS</span>
-          <span class="chip">Routage inter-VLAN</span>
-          <span class="chip">VLSM / Adressage IP</span>
-          <span class="chip">Switch Cisco 2960</span>
+      <!-- Projet 2 -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-num">Projet 02</div>
+          <h3>
+            Infrastructure réseau complexe avec DNS hiérarchique et DHCP relay
+          </h3>
+          <div class="project-context">
+            Déploiement d'une infrastructure distribuée avec délégation, relais
+            et haute disponibilité
+          </div>
+        </div>
+        <img
+          src="./proj2.png"
+          alt="Schéma projet 2"
+          class="project-img"
+          onerror="this.style.display = 'none'" />
+        <div class="project-body">
+          <p>
+            Architecture distribuée à trois serveurs : résolution DNS
+            hiérarchique avec <strong>délégation de zones</strong>, mécanisme de
+            relais DHCP inter-VLAN, basculement (failover) pour la haute
+            disponibilité, et redirection Internet conditionnelle.
+          </p>
+          <div class="skills-row">
+            <div class="label">Compétences mobilisées</div>
+            <div class="chips">
+              <span class="chip hl">DNS hiérarchique</span>
+              <span class="chip hl">Délégation de zones</span>
+              <span class="chip hl">DHCP relay</span>
+              <span class="chip">Haute disponibilité</span>
+              <span class="chip">Routage avancé</span>
+              <span class="chip">Segmentation réseau</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="realisation-footer">
-        <span class="realisation-date">📅 19 / 02 / 2026</span>
-        <a href="docs/Annexe_E5_Reseau.docx" class="btn btn-ghost" download>↓ Télécharger la fiche (DOCX)</a>
-      </div>
-    </div>
-  </div>
 
-  <!-- RÉALISATION 2 — SYSTÈME -->
-  <div class="realisation-card reveal" style="margin-top:1.5rem;">
-    <div class="realisation-header">
-      <div class="realisation-num">Réalisation N°2</div>
-      <div class="realisation-tag tag-systeme">Système</div>
-      <h3>Infrastructure serveurs centralisée — PME GameZone</h3>
-      <p class="realisation-context">BTS SIO SISR · Session 2026 · Réalisation professionnelle</p>
-    </div>
-    <div class="realisation-body">
-      <div class="realisation-org">
-        <span class="org-label">Contexte</span>
-        <p>GameZone est une PME de vente de jeux vidéo sans infrastructure centralisée : pas de domaine, fichiers dispersés, aucun outil de gestion de parc. La direction a décidé de structurer son SI. En tant que technicien systèmes et réseaux, j'ai été chargé de concevoir et déployer l'ensemble de l'infrastructure.</p>
-      </div>
-      <div class="realisation-desc">
-        <span class="org-label">Description</span>
-        <p>Déploiement d'un <strong>Active Directory</strong> (SRV-DC01, Windows Server) avec 15 comptes utilisateurs, groupes métiers, GPO et rôles DNS/DHCP. Un serveur de fichiers SMB avec permissions par groupe AD, quotas FSRM et clichés instantanés. Un serveur <strong>GLPI sur Debian 12</strong> pour l'inventaire automatique et le helpdesk, relié à l'AD via LDAP. Sécurité renforcée : politique de mots de passe, Fail2ban, SSH sur port 2222, UFW, audit des accès, sauvegardes quotidiennes sur NAS.</p>
-      </div>
-      <div class="realisation-skills">
-        <div class="chips" style="margin-top:0;">
-          <span class="chip hl">Active Directory</span>
-          <span class="chip hl">GPO</span>
-          <span class="chip hl">GLPI / LDAP</span>
-          <span class="chip">Windows Server</span>
-          <span class="chip">Debian 12</span>
-          <span class="chip">SMB / FSRM</span>
-          <span class="chip">Fail2ban / UFW</span>
-          <span class="chip">Sauvegarde NAS</span>
+      <!-- Projet 3 -->
+      <div class="project-card reveal">
+        <div class="project-header">
+          <div class="project-num">Projet 03</div>
+          <h3>
+            Annuaire centralisé & gestion de parc en environnement hybride
+          </h3>
+          <div class="project-context">
+            Mise en place d'un système de gestion centralisée combinant gestion
+            des identités et gestion des ressources
+          </div>
+        </div>
+        <img
+          src="https://benjaminsabayeportfoliobts.wordpress.com/wp-content/uploads/2025/12/capture-decran-2025-12-17-214535.png"
+          alt="Schéma projet 3"
+          class="project-img"
+          onerror="this.style.display = 'none'" />
+        <div class="project-body">
+          <p>
+            Déploiement d'un <strong>Active Directory</strong> pour la gestion
+            centralisée des comptes, des droits et des politiques de sécurité
+            (GPO). Couplé à une solution ITSM (gestion de parc + ticketing),
+            avec synchronisation automatique des identités entre les deux
+            plateformes.
+          </p>
+          <div class="skills-row">
+            <div class="label">Compétences mobilisées</div>
+            <div class="chips">
+              <span class="chip hl">Active Directory</span>
+              <span class="chip hl">GPO</span>
+              <span class="chip hl">Gestion de parc</span>
+              <span class="chip">Synchronisation LDAP</span>
+              <span class="chip">Système de tickets</span>
+              <span class="chip">Intégration multi-plateformes</span>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="realisation-footer">
-        <span class="realisation-date">📅 19 / 02 / 2026</span>
-        <a href="docs/Annexe_E5_Systeme.docx" class="btn btn-ghost" download>↓ Télécharger la fiche (DOCX)</a>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<footer>
-  <p>© 2025–2026 <span>Benjamin Sabaye</span> — BTS SIO SISR · Ingetis Paris</p>
-  <p><a href="index.html" style="color:var(--muted);text-decoration:none;font-family:var(--font-mono);font-size:0.7rem;">← Retour à l'accueil</a></p>
-</footer>
-<script src="main.js"></script>
-</body>
+    <hr class="divider" />
+
+    <!-- RÉALISATIONS PROFESSIONNELLES E5 -->
+    <section class="content-section" style="padding-top: 3.5rem">
+      <div class="section-label">Épreuve E5 — Annexes 7</div>
+      <h2 class="section-title">Réalisations professionnelles</h2>
+      <p
+        style="
+          color: var(--muted);
+          font-size: 1rem;
+          line-height: 1.8;
+          max-width: 700px;
+          margin-bottom: 2.5rem;
+        "
+        class="reveal">
+        Deux fiches de réalisations professionnelles rédigées dans le cadre de
+        l'épreuve E5 du BTS SIO SISR, session 2026. Chaque fiche décrit un
+        projet technique mené en autonomie, avec contexte, architecture déployée
+        et compétences mobilisées.
+      </p>
+
+      <!-- RÉALISATION 1 — RÉSEAU -->
+      <div class="realisation-card reveal">
+        <div class="realisation-header">
+          <div class="realisation-num">Réalisation N°1</div>
+          <div class="realisation-tag tag-reseau">Réseau</div>
+          <h3>Segmentation VLAN et routage inter-VLAN — PME Brokestar</h3>
+          <p class="realisation-context">
+            BTS SIO SISR · Session 2026 · Réalisation professionnelle
+          </p>
+        </div>
+        <div class="realisation-body">
+          <div class="realisation-org">
+            <span class="org-label">Contexte</span>
+            <p>
+              La PME Brokestar souhaite segmenter son réseau local afin de
+              séparer deux populations d'utilisateurs (Techniciens support et
+              Développeurs applicatifs) et isoler les services critiques dans un
+              VLAN dédié. L'objectif est de limiter les domaines de diffusion,
+              améliorer la sécurité logique et garantir l'attribution
+              automatique d'adresses IP via un serveur DHCP unique.
+            </p>
+          </div>
+          <div class="realisation-desc">
+            <span class="org-label">Description</span>
+            <p>
+              L'architecture repose sur <strong>trois VLAN distincts</strong> :
+              VLAN 10 (techniciens, 192.168.10.0/28), VLAN 20 (développeurs,
+              192.168.10.16/29) et VLAN 30 (serveurs critiques,
+              192.168.10.24/29). Le routage inter-VLAN est assuré par un routeur
+              Cisco R1 via la méthode
+              <strong>router-on-a-stick</strong> (sous-interfaces 802.1Q). Le
+              switch Cisco 2960 gère les ports en mode access et un lien trunk
+              transporte les trames étiquetées. Un serveur DHCP centralisé dans
+              le VLAN 30 distribue les configurations réseau via
+              <strong>ip helper-address</strong>.
+            </p>
+          </div>
+          <div class="realisation-skills">
+            <div class="chips" style="margin-top: 0">
+              <span class="chip hl">VLAN 802.1Q</span>
+              <span class="chip hl">Router-on-a-stick</span>
+              <span class="chip hl">DHCP centralisé</span>
+              <span class="chip">Cisco IOS</span>
+              <span class="chip">Routage inter-VLAN</span>
+              <span class="chip">VLSM / Adressage IP</span>
+              <span class="chip">Switch Cisco 2960</span>
+            </div>
+          </div>
+          <div class="realisation-footer">
+            <span class="realisation-date">📅 19 / 02 / 2026</span>
+            <a href="docs/Annexe_E5_Reseau.docx" class="btn btn-ghost" download
+              >↓ Télécharger la fiche (DOCX)</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- RÉALISATION 2 — SYSTÈME -->
+      <div class="realisation-card reveal" style="margin-top: 1.5rem">
+        <div class="realisation-header">
+          <div class="realisation-num">Réalisation N°2</div>
+          <div class="realisation-tag tag-systeme">Système</div>
+          <h3>Infrastructure serveurs centralisée — PME GameZone</h3>
+          <p class="realisation-context">
+            BTS SIO SISR · Session 2026 · Réalisation professionnelle
+          </p>
+        </div>
+        <div class="realisation-body">
+          <div class="realisation-org">
+            <span class="org-label">Contexte</span>
+            <p>
+              GameZone est une PME de vente de jeux vidéo sans infrastructure
+              centralisée : pas de domaine, fichiers dispersés, aucun outil de
+              gestion de parc. La direction a décidé de structurer son SI. En
+              tant que technicien systèmes et réseaux, j'ai été chargé de
+              concevoir et déployer l'ensemble de l'infrastructure.
+            </p>
+          </div>
+          <div class="realisation-desc">
+            <span class="org-label">Description</span>
+            <p>
+              Déploiement d'un <strong>Active Directory</strong> (SRV-DC01,
+              Windows Server) avec 15 comptes utilisateurs, groupes métiers, GPO
+              et rôles DNS/DHCP. Un serveur de fichiers SMB avec permissions par
+              groupe AD, quotas FSRM et clichés instantanés. Un serveur
+              <strong>GLPI sur Debian 12</strong> pour l'inventaire automatique
+              et le helpdesk, relié à l'AD via LDAP. Sécurité renforcée :
+              politique de mots de passe, Fail2ban, SSH sur port 2222, UFW,
+              audit des accès, sauvegardes quotidiennes sur NAS.
+            </p>
+          </div>
+          <div class="realisation-skills">
+            <div class="chips" style="margin-top: 0">
+              <span class="chip hl">Active Directory</span>
+              <span class="chip hl">GPO</span>
+              <span class="chip hl">GLPI / LDAP</span>
+              <span class="chip">Windows Server</span>
+              <span class="chip">Debian 12</span>
+              <span class="chip">SMB / FSRM</span>
+              <span class="chip">Fail2ban / UFW</span>
+              <span class="chip">Sauvegarde NAS</span>
+            </div>
+          </div>
+          <div class="realisation-footer">
+            <span class="realisation-date">📅 19 / 02 / 2026</span>
+            <a href="docs/Annexe_E5_Systeme.docx" class="btn btn-ghost" download
+              >↓ Télécharger la fiche (DOCX)</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        © 2025–2026 <span>Benjamin Sabaye</span> — BTS SIO SISR · Ingetis Paris
+      </p>
+      <p>
+        <a
+          href="index.html"
+          style="
+            color: var(--muted);
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+          "
+          >← Retour à l'accueil</a
+        >
+      </p>
+    </footer>
+    <script src="main.js"></script>
+  </body>
 </html>
